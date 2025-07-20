@@ -22,7 +22,7 @@ In this case, the destination chain is **Stacks**.
 
 ## Overview
 
-This document outlines the a mechanism for executing transactions on the Stacks network on behalf of the user, using an escrow system to securely transfer funds from a source chain to the Stacks network. The process involves the user signing a minimum number of transactions, which are then executed by a third-party intermediary (e.g., Spicenet) to complete the transaction on the Stacks network.
+This document outlines a mechanism for executing transactions on the Stacks network on behalf of the user, using an escrow system to securely transfer funds from a source chain to the Stacks network. The process involves the user signing a minimum number of transactions, which are then executed by a third-party intermediary (e.g., Spicenet) to complete the transaction on the Stacks network.
 
 Stacks is a L1 blockchain that uses Clarity smart contracts and is designed to bring programmability to Bitcoin via the **Proof-of-Transfer (PoX)** mechanism. However, there is no EIP-7702 equivalent or alike delegation mechanism in Stacks. The proposed solution allows users to delegate transaction execution to a third party (Spicenet) while ensuring that their funds are securely managed through an escrow system.
 
@@ -111,8 +111,6 @@ On Stacks, we can use proxy contracts to represent users, enabling solvers to ex
 
 - Minimal number of transactions to be signed by the user.
 
-
-
 ## Stacks network specifics
 
 - **Native token:** STX; smallest unit is microSTX (1 STX = 1,000,000 microSTX)
@@ -128,7 +126,7 @@ On Stacks, we can use proxy contracts to represent users, enabling solvers to ex
 
 ![Stacks transaction execution](images/tx_lifecycle.png)
 
-**_\*Ref: https://docs.stacks.co/concepts/transactions/transactions#lifecycle_**
+***\*Ref: https://docs.stacks.co/concepts/transactions/transactions#lifecycle***
 
 ### Clarity smart contracts
 
@@ -137,3 +135,13 @@ Stacks uses Clarity as it's smart contract language. Every entity involved in a 
 - **Standard Principal:** This is a principal that is associated with a user-controlled accounts. It is used for actions like sending transactions directly from a user's wallet.
 
 - **Contract Principal:** This is a principal that is associated with a Clarity smart contracts. When a contract invokes another contract, the `tx-sender` (a built-in Clarity variable that identifies the originator of the transaction) is set to the 'contract's principal' of the calling contract, not the standard principal of the user.
+
+## Sources
+
+- [Stacks Documentation](https://docs.stacks.co/)
+- [EIP-7702](https://eip7702.io/)
+- [Clarity GitHub](https://github.com/clarity-lang/overview)
+- [Clarity book](https://book.clarity-lang.org/)
+ - https://www.quicknode.com/guides/other-chains/stacks/how-to-create-and-deploy-a-clarity-smart-contract-on-the-stacks-blockchain
+ - https://www.ortege.ai/news/exploring-stacks-proof-of-transfer-insights-ortegelakehouse-datasets
+ - https://chorus.one/articles/an-introduction-to-stacks-the-bitcoin-layer-2-for-smart-contracts-apps-defi
