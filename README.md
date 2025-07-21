@@ -73,7 +73,7 @@ On Stacks, we can use proxy contracts to represent users, enabling solvers to ex
 
 - **Delegated Call:** Solver calls a function on the proxy (e.g., execute-deposit), passing destination contract details (stacks escrow contract). Proxy verifies the intent and calls the destination's deposit function, transferring the 100 USDT.
 
-- **Outcome:** The destination contract receives the deposit from the proxy's address, which maps 1:1 to the user's source address. Assuming gas fees is handled by the solver or spicenet, the user doesn't need to hold any STX tokens on Stacks.
+- **Outcome:** The destination contract receives the deposit from the proxy's address, which maps 1:1 to the user's source address. Assuming gas fees is handled by the solver or Spicenet, the user doesn't need to hold any STX tokens on Stacks.
 
 ![Flow](images/flow.png)
 
@@ -88,9 +88,9 @@ On Stacks, we can use proxy contracts to represent users, enabling solvers to ex
     - Fully met. The user only needs to hold the token required to initiate the transaction on the source chain.
 
 3. **Not require any changes to the contract code on the destination chain:**
-    - Partially met. The proxy contract on Stacks calls the escrow contract on Stacks on user's behalf as is, but the `tx-sender` (a contract principal) is the proxy, not a standard principal. If the escrow contract expects a standard principal or records `tx-sender`, it may not recognize the proxy as a user which may cause issues.
+    - Partially met. The proxy contract on Stacks calls the escrow contract on Stacks on user's behalf as is, but the `tx-sender` (a contract principal) is the proxy, not a standard principal. If the escrow contract expects a standard principal or records `tx-sender`, it may not recognize the proxy as a user which may cause issues. [more details](#clarity-smart-contracts)
 
-4. **Not require spicenet to maintain any keypairs except for escrow authorization:**
+4. **Not require Spicenet to maintain any keypairs except for escrow authorization:**
     - Fully met. Spicenet does not need to maintain any keypairs except for the escrow authorization.
 
 5. **Minimize the number of approvals required by the user:**
