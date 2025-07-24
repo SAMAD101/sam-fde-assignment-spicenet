@@ -63,6 +63,37 @@ On Stacks, we can use proxy contracts to represent users, enabling solvers to ex
     1. The proxy contract includes logic to verify the intent from Spicenet, ensuring that only valid intents are executed.
     2. The escrow contract ensures that funds are securely held until the transaction is confirmed on the Stacks network.
 
+#### Intent verification
+
+- The intent is created and signed on the source chain, and sent to Spicenet. 
+
+- Demo intent message:
+```
+{
+  "action": "deposit"/"withdraw",
+  "user": "<user address on source chain>",
+  "amount": <amount>,
+  "token": <token contract/address>,
+  "destination": "Stacks" <or whichever destination chain>,
+  "idempotency_key": <unique nonce to prevent replay of intent>,
+  "timestamp": <time of signing the intent>
+}
+```
+
+- The signature on the intent cryptographically binds the user to this specific intent.
+
+- Spicenet validates the submitted intent signature using the public key of the user associated in the intent message, and also records the intent using the idempotency_key which also ensure that the intent has not been already processed.
+
+- **Deposit event:** Once the intent is verified, spicenet communicates with source chain to transfer the funds to the destination chain, once the deposit event is emitted on the destination chain.
+
+- **Withdraw event:** Once the intent is verified, spicenet communicates with destination chain to transfer the funds to the source chain, once the withdraw event is emitted on the destination chain.
+
+- These events are monitored by Spicenet.
+
+- **Completion:** Once a matching emitted event (deposit/withdraw) is detected by Spicenet with an approved intent, it marks the action (deposit/withdraw) as successful.
+
+![Intent Verification](images/intent_verification.png)
+
 ## Example flow
 
 - **Setup:** User owns 100 USDT on Spicenet and signs a single intent to deposit into the Stacks contract, delegating execution to Spicenet.
