@@ -181,3 +181,6 @@ Stacks uses Clarity as it's smart contract language. Every entity involved in a 
  - https://www.quicknode.com/guides/other-chains/stacks/how-to-create-and-deploy-a-clarity-smart-contract-on-the-stacks-blockchain
  - https://www.ortege.ai/news/exploring-stacks-proof-of-transfer-insights-ortegelakehouse-datasets
  - https://chorus.one/articles/an-introduction-to-stacks-the-bitcoin-layer-2-for-smart-contracts-apps-defi
+ - https://medium.com/across-protocol/the-intents-bridge-how-across-uses-optimistic-verification-to-lower-costs-2acaa8a7265e
+ - https://www.decipherclub.com/a-tale-of-cross-chain-verification/
+ 
