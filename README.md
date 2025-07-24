@@ -92,6 +92,11 @@ On Stacks, we can use proxy contracts to represent users, enabling solvers to ex
 
 - **Completion:** Once a matching emitted event (deposit/withdraw) is detected by Spicenet with an approved intent, it marks the action (deposit/withdraw) as successful.
 
+- **Solvers role:** Observes the intent and escrow states, and makes the onchain calls to complete the transaction executions.
+  - Deposit: Ensures user funds are deposited into the escrow on Stacks as per intent. Source chain -> Spicenet -> Proxy contract on Stacks -> Escrow contract on Stacks.
+  - Withdraw: Ensures user funds are withdrawn from the escrow on Stacks as per intent. Escrow contract on Stacks -> Proxy contract on Stacks -> Spicenet -> Source chain.
+  - Solvers rely on Spicenet to handle the intent verification and relay the intent to the proxy contract on Stacks.
+
 ![Intent Verification](images/intent_verification.png)
 
 ## Example flow
